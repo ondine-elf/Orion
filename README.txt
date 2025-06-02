@@ -20,5 +20,3 @@ installed. Generally, they are:
     linux-headers-$(uname -r)
     make
     libbpf-dev
-
-    
