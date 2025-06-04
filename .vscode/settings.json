@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "bpf_endian.h": "c",
+        "if_ether.h": "c",
+        "bpf_helpers.h": "c",
+        "new_ring_bpf_skele.h": "c",
+        "telescope_skeleton.h": "c",
+        "bpf.h": "c",
+        "types.h": "c",
+        "bpf_common.h": "c",
+        "posix_types.h": "c"
+    }
+}
