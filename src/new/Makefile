@@ -28,6 +28,7 @@ build_usr:
 		-g \
 		-Wall \
 		$(USR_SRC) \
+		xpcapng.c \
 		-lelf \
 		-lbpf \
 		-lz \

@@ -8,6 +8,9 @@
         "bpf.h": "c",
         "types.h": "c",
         "bpf_common.h": "c",
-        "posix_types.h": "c"
+        "posix_types.h": "c",
+        "libxdp.h": "c",
+        "stdio.h": "c",
+        "inet.h": "c"
     }
 }
