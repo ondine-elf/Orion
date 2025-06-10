@@ -35,7 +35,7 @@ int xdp_prog(struct xdp_md* ctx) {
 
     __u32 pkt_len = data_end - data;
 
-    packet_event_t* event = bpf_ringbuf_reserve(&ring_buffer, sizeof(*event) + pkt_len, 0);
+    packet_event_t* event = bpf_ringbuf_reserve(&ring_buffer, sizeof(*event) + 0, 0);
     if (!event) {
         bpf_ringbuf_discard(event, 0);
         return XDP_PASS;
@@ -44,10 +44,10 @@ int xdp_prog(struct xdp_md* ctx) {
     event->pkt_len = pkt_len;
     event->timestamp_ns = bpf_ktime_get_ns();
 
-    if (bpf_probe_read_kernel(event->pkt_data, pkt_len, data) < 0) {
-        bpf_ringbuf_discard(event, 0);
-        return XDP_PASS;
-    }
+    //if (bpf_probe_read_kernel(event->pkt_data, pkt_len, data) < 0) {
+        //bpf_ringbuf_discard(event, 0);
+        //return XDP_PASS;
+    //}
 
     bpf_ringbuf_submit(event, 0);
     return XDP_PASS;
