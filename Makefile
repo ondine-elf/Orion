@@ -1,11 +1,12 @@
-SRC := src/xdp_prog_stream.c
-
+src = src/xdp_pcap_kern.c
+dump_src = src/xdp_pcap_user.c
 run:
-	@clang -O2 -g -Wall -Wextra -target bpf -c $(SRC) -o xdp_prog.o
-	@xdp-loader load -m skb -s xdp -p /sys/fs/bpf wlo1 xdp_prog.o
-	@rm xdp_prog.o
-	@gcc src/xdp_prog_user_pcap.c -o dump -lbpf
-	@sudo ./dump
+	@clang -g -Wall -Wextra -O2 -target bpf -c $(src) -o build/xdp_prog_kern.o
+	@xdp-loader load -m skb -s xdp -p /sys/fs/bpf wlo1 build/xdp_prog_kern.o
 
-clean:
+dump:
+	@gcc -Wall -Wextra -O2 $(dump_src) -o build/dump -lbpf -lz
+	@build/dump
+
+stop:
 	@xdp-loader unload -a wlo1
